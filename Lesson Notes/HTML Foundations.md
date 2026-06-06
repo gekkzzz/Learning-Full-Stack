@@ -13,6 +13,7 @@ CSS: Stylises the website.
 JavaScript: Increases the interactivity of the website.
 
 ## HTML Boilerplate
+``` HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,3 +45,4 @@ JavaScript: Increases the interactivity of the website.
 
 </body>
 </html>
+```

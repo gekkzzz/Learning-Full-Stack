@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  PROJECT 2.7 — SEO BLOG PAGE                                    ║
+    ║  Lecture Notes: 08. SEO and Accessibility                        ║
+    ╚══════════════════════════════════════════════════════════════════╝
+
+    WHAT YOU'RE BUILDING:
+    ─────────────────────
+    A single, well-written blog post page on any topic you choose.
+    The article content matters less than getting every SEO and
+    accessibility detail right. Treat this as the technical foundation
+    that makes the content actually discoverable and usable.
+
+    Pick a topic you're genuinely interested in. Examples:
+      • "How to Get Started with Running: A Beginner's Plan"
+      • "The 10 Best Budget Travel Destinations in Europe"
+      • "A Beginner's Guide to Coffee Brewing Methods"
+    Whatever you pick, write real content — not lorem ipsum.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 1 — TITLE TAG
+    ══════════════════════════════════════════════════════════════════
+    Add a <title> tag here. Requirements:
+      • Include your main keyword near the start of the title
+      • Keep it 50–60 characters long
+      • Include your site name at the end: "Title | Site Name"
+      • Every page on a real website must have a unique <title>
+
+    Example: "How to Start Running: A 12-Week Beginner Plan | RunBetter"
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 2 — META DESCRIPTION
+    ══════════════════════════════════════════════════════════════════
+    Add: <meta name="description" content="...">
+      • 120–160 characters
+      • Include the keyword naturally
+      • Describe what the reader will get from the article
+      • End with a hook or benefit — this is what appears in search results
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 3 — CANONICAL URL
+    ══════════════════════════════════════════════════════════════════
+    Add: <link rel="canonical" href="https://yourblog.com/your-article">
+    This prevents duplicate content penalties if the same page loads
+    at multiple URLs (e.g. with and without www, or with query strings).
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 4 — OPEN GRAPH TAGS (social media previews)
+    ══════════════════════════════════════════════════════════════════
+    When someone shares your link on Slack, Twitter, or LinkedIn,
+    these tags control what the preview card looks like.
+    Add all of these:
+
+      <meta property="og:type"        content="article">
+      <meta property="og:title"       content="Your article title">
+      <meta property="og:description" content="Your description">
+      <meta property="og:image"       content="Full URL to a 1200×630 image">
+      <meta property="og:url"         content="Full canonical URL">
+
+      <meta name="twitter:card"        content="summary_large_image">
+      <meta name="twitter:title"       content="Your article title">
+      <meta name="twitter:description" content="Your description">
+      <meta name="twitter:image"       content="Full URL to image">
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 5 — STRUCTURED DATA (JSON-LD)
+    ══════════════════════════════════════════════════════════════════
+    Add a <script type="application/ld+json"> block.
+    This gives Google machine-readable data about your article,
+    enabling rich results (author, date shown in search snippets).
+
+    Use this template, filling in your own values:
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Your article title",
+        "description": "Your description",
+        "image": "Your image URL",
+        "author": { "@type": "Person", "name": "Your Name" },
+        "datePublished": "2025-01-15",
+        "dateModified": "2025-01-15"
+      }
+
+    Validate it at: https://search.google.com/test/rich-results
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 6 — BREADCRUMB STRUCTURED DATA
+    ══════════════════════════════════════════════════════════════════
+    Add a second JSON-LD block for the breadcrumb trail:
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://yourblog.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Category", "item": "https://yourblog.com/category/" },
+          { "@type": "ListItem", "position": 3, "name": "Article title" }
+        ]
+      }
+    -->
+
+    <!-- Add your meta tags here (Tasks 1–6) -->
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!--
+    ══════════════════════════════════════════════════════════════════
+    TASK 7 — ACCESSIBILITY: SKIP LINK
+    ══════════════════════════════════════════════════════════════════
+    This must be the very first element inside <body>.
+    Keyboard users (and screen reader users) can press Tab once and
+    hit Enter to jump straight past the navbar to the article.
+
+    Add: <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    In CSS, this link is visually hidden until focused:
+      .skip-link {
+        position: absolute;
+        top: -100%;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+
+    Add id="main-content" to your <main> element.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 8 — SITE HEADER AND NAVIGATION
+    ══════════════════════════════════════════════════════════════════
+    Build a <header> with your site name/logo and a <nav> with links.
+
+    Important accessibility requirements:
+      • The <nav> must have aria-label="Site navigation" so if a page
+        has multiple nav elements, screen readers can tell them apart
+      • Links must have descriptive text — never "click here"
+      • The logo should link to "/" and use aria-label if it's an image
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 9 — BREADCRUMB NAVIGATION
+    ══════════════════════════════════════════════════════════════════
+    Add a breadcrumb trail between the header and the article:
+      Home › Blog › [Category] › [Article Title]
+
+    Use this semantic structure:
+      <nav aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/blog/category">Category</a></li>
+          <li aria-current="page">Article Title</li>  ← current page, no link
+        </ol>
+      </nav>
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 10 — ARTICLE CONTENT WITH CORRECT SEMANTICS
+    ══════════════════════════════════════════════════════════════════
+    Your article must live inside:
+      <main id="main-content">
+        <article>
+          ...
+        </article>
+      </main>
+
+    Inside <article>, the structure should be:
+
+    ARTICLE HEADER (inside <article>, a nested <header> is valid):
+      • One <h1> — the article title (same words as your <title> tag)
+      • A <time datetime="2025-01-15"> element for the publish date
+      • Author name and a reading time estimate
+
+    HERO IMAGE:
+      • Wrap in <figure> + <figcaption>
+      • <img> must have a descriptive alt attribute
+      • Set width and height attributes to prevent layout shift
+
+    ARTICLE BODY:
+      Use real content with the following elements:
+        • 3–4 <h2> headings for major sections (not skipping to h3 first)
+        • At least 1 <h3> as a subsection under an h2
+        • Multiple <p> paragraphs
+        • 1 <ul> (unordered list — bullet points)
+        • 1 <ol> (ordered list — numbered steps)
+        • 1 <blockquote> (a tip or an expert quote)
+        • At least 1 <figure> + <img> + <figcaption> inline in the article
+        • At least 1 external link with rel="noopener noreferrer"
+        • At least 1 internal link (to another page on "your site")
+
+    All links must have descriptive text. Test by reading the link text
+    in isolation — does it make sense without surrounding context?
+      Bad:  <a href="/guide">here</a>
+      Good: <a href="/guide">our complete guide to trail running shoes</a>
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 11 — TABLE
+    ══════════════════════════════════════════════════════════════════
+    Include at least one <table> in your article. Tables are good for
+    comparison data, schedules, or stats.
+
+    Accessibility requirements for tables:
+      • <caption> — a title for the table (like a heading above it)
+      • <th scope="col"> for column headers
+      • <th scope="row"> for row headers
+      Example: a training schedule table, a comparison of products,
+      a gear list with weights, etc.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 12 — COLOUR CONTRAST AND FOCUS STYLES
+    ══════════════════════════════════════════════════════════════════
+    In your CSS:
+      • Text must have at least 4.5:1 contrast ratio against background
+        (check at: https://webaim.org/resources/contrastchecker/)
+      • NEVER do: :focus { outline: none; } — this breaks keyboard nav
+      • DO add custom focus styles that are clearly visible:
+          :focus-visible {
+            outline: 3px solid your-primary-colour;
+            outline-offset: 2px;
+          }
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 13 — RELATED CONTENT SIDEBAR (or section)
+    ══════════════════════════════════════════════════════════════════
+    Add an <aside aria-label="Related content"> with:
+      • A "Related Articles" list (3 fake article links)
+      • An email newsletter signup form
+        (label + email input + submit button — properly labelled)
+
+    The <aside> can sit next to the article in a two-column grid,
+    or below it in a single-column layout.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 14 — FOOTER
+    ══════════════════════════════════════════════════════════════════
+    A <footer role="contentinfo"> with:
+      • Copyright notice
+      • Links to Privacy Policy and Sitemap
+      • The sitemap link should go to /sitemap.xml (doesn't have to exist)
+    -->
+
+    <!-- Build your page here -->
+
+  </body>
+</html>

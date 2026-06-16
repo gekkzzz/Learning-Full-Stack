@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alex Carter — Full Stack Developer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <header class="navbar">
+      <a href="#" class="navbar__logo">Alex Carter</a>
+      <nav aria-label="Main navigation">
+        <ul class="navbar__links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero__content">
+        <p class="hero__greeting">Hi, I'm</p>
+        <h1 class="hero__name">Alex Carter</h1>
+        <p class="hero__tagline">Full Stack Developer · I build things for the web</p>
+        <div class="hero__actions">
+          <a href="#projects" class="button button--primary">View My Work</a>
+          <a href="#contact" class="button button--outline">Get In Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section" id="about">
+      <h2 class="section__title">About Me</h2>
+      <div class="about__grid">
+        <div class="about__image">
+          <img src="https://placecats.com/300/300" alt="Alex Carter" width="300" height="300" />
+        </div>
+        <div class="about__text">
+          <p>I'm a full stack developer passionate about building clean, performant web applications. I love turning complex problems into simple, elegant solutions.</p>
+          <p>When I'm not coding, you'll find me hiking, reading, or experimenting with new recipes.</p>
+          <ul class="about__facts">
+            <li>📍 Based in London, UK</li>
+            <li>🎯 Currently learning Next.js and PostgreSQL</li>
+            <li>🎸 Amateur guitarist</li>
+            <li>☕ Powered by coffee</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects section" id="projects">
+      <h2 class="section__title">Projects</h2>
+      <div class="projects__grid">
+        <article class="card">
+          <img class="card__image" src="https://placecats.com/neo/400/250" alt="Recipe website project" width="400" height="250" />
+          <div class="card__body">
+            <h3 class="card__title">Recipe Website</h3>
+            <p class="card__description">A multi-page recipe site using pure HTML. Covers semantic markup, navigation, and linking between pages.</p>
+            <div class="card__tags">
+              <span class="tag">HTML</span>
+            </div>
+            <div class="card__links">
+              <a href="../2.1 Recipe/index.html" class="button button--small">View Project</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="card__image" src="https://placecats.com/millie/400/250" alt="Rock Paper Scissors game" width="400" height="250" />
+          <div class="card__body">
+            <h3 class="card__title">Rock Paper Scissors</h3>
+            <p class="card__description">A browser game with DOM manipulation, event listeners, and game logic. Tracks score across multiple rounds.</p>
+            <div class="card__tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <div class="card__links">
+              <a href="../2.2 Rock Paper Scissors/index.html" class="button button--small">View Project</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="card__image" src="https://placecats.com/bella/400/250" alt="Calculator project" width="400" height="250" />
+          <div class="card__body">
+            <h3 class="card__title">Calculator</h3>
+            <p class="card__description">A fully functional calculator with keyboard support, chained operations, and decimal handling.</p>
+            <div class="card__tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <div class="card__links">
+              <a href="../2.4 Calculator/index.html" class="button button--small">View Project</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="skills section" id="skills">
+      <h2 class="section__title">Skills</h2>
+      <div class="skills__groups">
+        <div class="skills__group">
+          <h3 class="skills__group-title">Frontend</h3>
+          <div class="skills__badges">
+            <span class="badge">HTML</span>
+            <span class="badge">CSS</span>
+            <span class="badge">JavaScript</span>
+            <span class="badge">TypeScript</span>
+            <span class="badge">React</span>
+          </div>
+        </div>
+        <div class="skills__group">
+          <h3 class="skills__group-title">Backend</h3>
+          <div class="skills__badges">
+            <span class="badge">Node.js</span>
+            <span class="badge">Express</span>
+            <span class="badge">Python</span>
+            <span class="badge">SQL</span>
+          </div>
+        </div>
+        <div class="skills__group">
+          <h3 class="skills__group-title">Tools</h3>
+          <div class="skills__badges">
+            <span class="badge">Git</span>
+            <span class="badge">VS Code</span>
+            <span class="badge">Figma</span>
+            <span class="badge">Docker</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <h2 class="section__title">Get In Touch</h2>
+      <p class="contact__intro">Have a project in mind or just want to say hello? I'd love to hear from you.</p>
+      <form class="contact__form" onsubmit="handleSubmit(event)">
+        <div class="form__group">
+          <label for="contact-name">Name</label>
+          <input type="text" id="contact-name" name="name" autocomplete="name" required />
+        </div>
+        <div class="form__group">
+          <label for="contact-email">Email</label>
+          <input type="email" id="contact-email" name="email" autocomplete="email" required />
+        </div>
+        <div class="form__group">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="button button--primary">Send Message</button>
+        <p class="form__success" id="form-success" hidden>✓ Message sent! I'll get back to you soon.</p>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Alex Carter · Built with HTML, CSS &amp; JavaScript</p>
+      <div class="footer__links">
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 2.8 — Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  PROJECT 2.8 — WEATHER APP                                       ║
+    ║  Lecture Notes: 15. APIs, 10. JavaScript Intermediate            ║
+    ╚══════════════════════════════════════════════════════════════════╝
+
+    WHAT YOU'RE BUILDING:
+    ─────────────────────
+    A weather app that lets the user type a city name and see:
+      • Current temperature and weather condition
+      • Wind speed, humidity, and "feels like" temperature
+      • A 5-day forecast
+
+    You will use the OpenWeatherMap API (free tier):
+      1. Sign up at https://openweathermap.org/api
+      2. Get a free API key (it activates within ~10 minutes)
+      3. Use the "Current Weather Data" and "5 Day Forecast" endpoints
+
+    API endpoint for current weather:
+      https://api.openweathermap.org/data/2.5/weather?q=CITY&units=metric&appid=YOUR_KEY
+
+    API endpoint for 5-day forecast:
+      https://api.openweathermap.org/data/2.5/forecast?q=CITY&units=metric&appid=YOUR_KEY
+    The forecast API returns data every 3 hours. Filter for one
+    reading per day (e.g. only entries where the time is 12:00:00).
+
+    IMPORTANT: Never commit your API key to Git. Store it in a
+    variable at the top of script.js and add script.js to .gitignore
+    if you want to be safe. OR use an environment variable.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 1 — SEARCH FORM
+    ══════════════════════════════════════════════════════════════════
+    Build a search form at the top of the page:
+      • A text <input> for the city name with:
+          - id="city-input"
+          - placeholder="Enter a city name..."
+          - aria-label="City name"
+      • A <button type="submit"> to trigger the search
+      • Wrap both in a <form id="search-form">
+
+    In JavaScript, listen for the form's 'submit' event (not the
+    button's click) — this also handles pressing Enter in the input.
+    Always call e.preventDefault() to stop the page from reloading.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 2 — FOUR UI STATES
+    ══════════════════════════════════════════════════════════════════
+    Your app has four different states. Build all four in HTML
+    but only show one at a time using CSS (hidden class or display:none).
+
+    STATE 1 — Empty state (shown on first load)
+      id="empty-state"
+      Content: a weather icon/illustration and a message like
+      "Search for a city to see its current weather"
+      This disappears after the first search.
+
+    STATE 2 — Loading state
+      id="loading-state"
+      Content: a spinner animation and "Fetching weather data..."
+      Show this while the API request is in-flight.
+
+    STATE 3 — Error state
+      id="error-state"
+      Content: an error icon and a message like "City not found."
+      Show this when the API returns a 404 or network error.
+      Include a paragraph with id="error-message" where you'll
+      inject the specific error text from JavaScript.
+
+    STATE 4 — Weather results (shown after a successful fetch)
+      id="weather-result"
+      See Task 3 for its structure.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 3 — CURRENT WEATHER CARD
+    ══════════════════════════════════════════════════════════════════
+    Inside id="weather-result", build the current weather display:
+
+    LOCATION HEADER:
+      • City name (h1 or h2) — id="city-name"
+      • Country code — id="country-code"
+      • Current date formatted nicely — id="current-date"
+
+    MAIN WEATHER DISPLAY:
+      • Weather icon (from OpenWeatherMap):
+          <img id="weather-icon" src="" alt="">
+          The icon URL pattern is:
+          https://openweathermap.org/img/wn/ICON_CODE@2x.png
+          where ICON_CODE comes from data.weather[0].icon
+      • Temperature in large text — id="temperature"
+      • Weather description (e.g. "light rain") — id="description"
+
+    WEATHER DETAIL GRID:
+    Build 4 detail cards for:
+      • Feels like temperature — id="feels-like"
+      • Humidity percentage — id="humidity"
+      • Wind speed (km/h or mph) — id="wind-speed"
+      • Visibility (metres to kilometres) — id="visibility"
+
+    Each detail card should have a label and a value.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 4 — 5-DAY FORECAST
+    ══════════════════════════════════════════════════════════════════
+    Below the current weather, build a forecast section:
+      • A heading: "5-Day Forecast"
+      • A container div — id="forecast-grid"
+
+    The forecast grid will be populated by JavaScript. Each day card
+    (created in JS) should show:
+      • Day name (Monday, Tuesday, etc.)
+      • Weather icon
+      • Min and max temperature
+
+    In your CSS, style the grid as a row of cards:
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    On mobile, reduce to 2 or 3 columns.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 5 — UNITS TOGGLE (Celsius / Fahrenheit)
+    ══════════════════════════════════════════════════════════════════
+    Add two toggle buttons above the weather result:
+      <button id="btn-celsius"    class="unit-btn active">°C</button>
+      <button id="btn-fahrenheit" class="unit-btn">°F</button>
+
+    In JavaScript, track the current unit. When switched:
+      • Re-fetch the weather with units=metric (Celsius) or
+        units=imperial (Fahrenheit)
+      • OR convert the stored Celsius value client-side:
+          fahrenheit = (celsius * 9/5) + 32
+
+
+    ══════════════════════════════════════════════════════════════════
+    JAVASCRIPT TASKS (see script.js)
+    ══════════════════════════════════════════════════════════════════
+    See script.js for the step-by-step JavaScript instructions.
+
+    ══════════════════════════════════════════════════════════════════
+    STYLING GOALS (see style.css)
+    ══════════════════════════════════════════════════════════════════
+    See style.css for the detailed CSS instructions.
+
+    ══════════════════════════════════════════════════════════════════
+    STRETCH GOALS (optional)
+    ══════════════════════════════════════════════════════════════════
+    → "Use my location" button using the Geolocation API:
+        navigator.geolocation.getCurrentPosition(pos => {
+          // Use pos.coords.latitude and pos.coords.longitude
+          // Different API endpoint: ?lat=LAT&lon=LON&...
+        })
+    → Save the last searched city in localStorage so it reloads
+      on next visit
+    → Change the page's background gradient based on weather
+      condition (sunny = warm yellow/orange, rainy = grey/blue, etc.)
+    → Show sunrise/sunset times (available in the API response)
+    -->
+
+    <!-- Build your HTML here -->
+    <script src="script.js"></script>
+  </body>
+</html>

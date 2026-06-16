@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 2.12 — GitHub Profile Viewer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  PROJECT 2.12 — GITHUB PROFILE VIEWER                            ║
+    ║  Lecture Notes: 15. APIs, 10. JavaScript Intermediate            ║
+    ╚══════════════════════════════════════════════════════════════════╝
+
+    WHAT YOU'RE BUILDING:
+    ─────────────────────
+    A web app that fetches and displays a GitHub user's profile and
+    their public repositories using the GitHub REST API — no API key
+    required for public data.
+
+    API endpoints you'll use:
+      User profile: https://api.github.com/users/USERNAME
+      Repositories: https://api.github.com/users/USERNAME/repos?sort=updated&per_page=6
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 1 — SEARCH BAR
+    ══════════════════════════════════════════════════════════════════
+    A form at the top:
+      • <form id="search-form">
+      • Text input — id="username-input", placeholder="GitHub username..."
+      • A submit button
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 2 — FOUR UI STATES
+    ══════════════════════════════════════════════════════════════════
+    Like the weather app, build four state panels:
+
+    STATE 1 — Empty (id="empty-state")
+      Show a message like "Search for a GitHub user above"
+
+    STATE 2 — Loading (id="loading-state")
+      A spinner with "Fetching profile..."
+
+    STATE 3 — Error (id="error-state")
+      An error message area — id="error-message"
+
+    STATE 4 — Results (id="profile-result", hidden initially)
+      See Tasks 3 and 4.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 3 — PROFILE CARD
+    ══════════════════════════════════════════════════════════════════
+    Inside id="profile-result", build the profile section:
+
+      • Avatar image — id="avatar" (src and alt set by JS)
+      • Full name — id="full-name"
+      • Username (@login) — id="username-display"
+      • Bio — id="bio"
+      • Location — id="location" (hide the element if the user has no location)
+      • Blog/website link — id="blog-link"
+      • Join date — id="join-date"
+
+      STAT GRID (followers, following, public repos, public gists):
+        Build 4 stat cards. Each needs a label and a value:
+          id="followers", id="following", id="public-repos", id="public-gists"
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 4 — REPOSITORIES GRID
+    ══════════════════════════════════════════════════════════════════
+    Below the profile, build a repos section:
+      • A heading: "Most Recent Repositories"
+      • A grid container — id="repos-grid"
+        (JavaScript will populate this with repo cards)
+
+    Each repo card (built by JavaScript) should show:
+      • Repo name (links to GitHub)
+      • Description (or "No description" if null)
+      • Language badge (if available)
+      • Star count (⭐ N)
+      • Fork count (🍴 N)
+      • Last updated date
+
+
+    ══════════════════════════════════════════════════════════════════
+    JAVASCRIPT TASKS (see script.js)
+    ══════════════════════════════════════════════════════════════════
+    ══════════════════════════════════════════════════════════════════
+    STYLING GOALS (see style.css)
+    ══════════════════════════════════════════════════════════════════
+
+    ══════════════════════════════════════════════════════════════════
+    STRETCH GOALS
+    ══════════════════════════════════════════════════════════════════
+    → Paginate repositories (load more on button click)
+    → Add a "Languages used" chart (count occurrences across all repos)
+    → Let users compare two GitHub profiles side by side
+    → Cache results in sessionStorage to avoid re-fetching
+    -->
+
+    <!-- Build your HTML here -->
+    <script src="script.js"></script>
+  </body>
+</html>

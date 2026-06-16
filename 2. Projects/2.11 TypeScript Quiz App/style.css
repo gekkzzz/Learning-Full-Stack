@@ -1,0 +1,234 @@
+/*
+  PROJECT 2.11 — TYPESCRIPT QUIZ APP
+  ═════════════════════════════════════
+  Lecture Notes: 13. TypeScript Intermediate
+
+  Clean, focused quiz UI. Think Duolingo or Kahoot but simpler.
+  The design should help the user concentrate on the question,
+  not distract them with too many visual elements.
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 1 — RESET AND CUSTOM PROPERTIES
+  ══════════════════════════════════════════════════════════
+  Custom properties:
+    --colour-primary:  #6366f1  (indigo)
+    --colour-success:  #22c55e  (green — for correct answers)
+    --colour-error:    #ef4444  (red — for wrong answers)
+    --colour-text:     #1f2937
+    --colour-muted:    #6b7280
+    --colour-bg:       #f9fafb
+    --colour-surface:  #ffffff
+    --colour-border:   #e5e7eb
+    --radius:          12px
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 2 — LAYOUT
+  ══════════════════════════════════════════════════════════
+  Centre a card on the page:
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--colour-bg);
+      font-family: system-ui, -apple-system, sans-serif;
+      color: var(--colour-text);
+      padding: 1rem;
+    }
+
+    .screen {
+      width: 100%;
+      max-width: 600px;
+      background: var(--colour-surface);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 2.5rem;
+    }
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 3 — PROGRESS BAR
+  ══════════════════════════════════════════════════════════
+    #progress-bar {
+      height: 8px;
+      background: var(--colour-border);
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    #progress-fill {
+      height: 100%;
+      background: var(--colour-primary);
+      border-radius: 50px;
+      transition: width 0.3s ease;
+      /* JavaScript sets: progressFill.style.width = percentage + '%' */
+    }
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 4 — TIMER
+  ══════════════════════════════════════════════════════════
+  The timer should be prominent. When time is running low
+  (e.g. < 10 seconds), it should change colour to warn the user.
+
+    #timer {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--colour-primary);
+      text-align: right;
+      margin-bottom: 0.5rem;
+    }
+
+    #timer.warning {
+      color: var(--colour-error);
+      animation: pulse 0.5s ease infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { opacity: 1; }
+      to   { opacity: 0.5; }
+    }
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 5 — QUESTION TEXT
+  ══════════════════════════════════════════════════════════
+    #question-text {
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+      color: var(--colour-text);
+    }
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 6 — ANSWER BUTTONS
+  ══════════════════════════════════════════════════════════
+    #answers {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+  Each answer button (built by JavaScript, so style the class):
+    .answer-btn {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border: 2px solid var(--colour-border);
+      border-radius: var(--radius);
+      background: var(--colour-surface);
+      color: var(--colour-text);
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      border-color: var(--colour-primary);
+      background: #eef2ff;
+    }
+
+    /* Added by JavaScript after an answer is selected */
+    .answer-btn.correct {
+      border-color: var(--colour-success);
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .answer-btn.wrong {
+      border-color: var(--colour-error);
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    /* Disable all buttons after an answer is chosen */
+    .answer-btn:disabled {
+      cursor: default;
+    }
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 7 — EXPLANATION BOX
+  ══════════════════════════════════════════════════════════
+  Shown after an answer is selected, if a question has an explanation:
+    #explanation {
+      background: #fffbeb;
+      border: 1px solid #fcd34d;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      color: #92400e;
+      margin-bottom: 1rem;
+    }
+
+    #explanation.hidden { display: none; }
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 8 — NEXT BUTTON AND FORM CONTROLS
+  ══════════════════════════════════════════════════════════
+  The "Next" button:
+    #next-btn {
+      width: 100%;
+      padding: 0.875rem;
+      background: var(--colour-primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    #next-btn:disabled {
+      background: var(--colour-border);
+      color: var(--colour-muted);
+      cursor: not-allowed;
+    }
+
+  Start screen selects (difficulty, category):
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid var(--colour-border);
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      background: white;
+    }
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 9 — RESULTS SCREEN
+  ══════════════════════════════════════════════════════════
+  The score display:
+    #final-score {
+      font-size: 3rem;
+      font-weight: 800;
+      text-align: center;
+      color: var(--colour-primary);
+      margin-bottom: 0.25rem;
+    }
+
+  The review list:
+    .review-item {
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .review-item.correct { background: #dcfce7; }
+    .review-item.wrong   { background: #fee2e2; }
+
+  Hidden utility class:
+    .hidden { display: none; }
+*/
+
+/* Start your styles below */

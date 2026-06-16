@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 2.11 — TypeScript Quiz App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  PROJECT 2.11 — TYPESCRIPT QUIZ APP                              ║
+    ║  Lecture Notes: 13. TypeScript Intermediate                      ║
+    ╚══════════════════════════════════════════════════════════════════╝
+
+    WHAT YOU'RE BUILDING:
+    ─────────────────────
+    A multiple-choice quiz app built with TypeScript. The TypeScript
+    compiles to JavaScript which then runs in the browser.
+
+    You will practise: discriminated unions, generics, utility types,
+    mapped types, and type narrowing — all applied to real app logic.
+
+    SETUP:
+      npm init -y
+      npm install typescript --save-dev
+      npx tsc --init
+    In tsconfig.json: "outDir": "./dist", "target": "ES2022"
+    Link <script src="dist/quiz.js"> in this file.
+    Run: npx tsc --watch  (recompiles on every save)
+
+    TOPICS TO QUIZ ON:
+      You write the questions! Suggested: JavaScript, TypeScript,
+      CSS, or any topic you're currently learning. Minimum 10 questions.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 1 — START SCREEN
+    ══════════════════════════════════════════════════════════════════
+    Build a start screen with:
+      • id="start-screen"
+      • Your quiz title as an <h1>
+      • A brief description
+      • A difficulty selector:
+          <select id="difficulty">
+            <option value="all">All difficulties</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+      • A category selector (if you have multiple categories):
+          <select id="category">
+            <option value="all">All categories</option>
+            ...
+          </select>
+      • A "Start Quiz" button — id="start-btn"
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 2 — QUIZ SCREEN
+    ══════════════════════════════════════════════════════════════════
+    The main quiz UI — id="quiz-screen" (hidden initially):
+      • Progress bar:
+          <div id="progress-bar"><div id="progress-fill"></div></div>
+          Progress text: "Question 3 of 10"
+      • Timer display — id="timer" (e.g. "0:30")
+      • The question text — id="question-text"
+      • Answer options container — id="answers"
+        JavaScript will populate this with 4 buttons
+      • A "Next" button — id="next-btn" (disabled until an answer is chosen)
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 3 — RESULTS SCREEN
+    ══════════════════════════════════════════════════════════════════
+    The results screen — id="results-screen" (hidden initially):
+      • A score display: "You scored 7 / 10" — id="final-score"
+      • A grade/message — id="grade-message"
+        (e.g. "Excellent!" for 90%+, "Good job!" for 70%+, etc.)
+      • A list of all questions with your answers vs. the correct ones
+        — id="review-list" (JavaScript populates this)
+      • "Try Again" button — id="retry-btn"
+
+
+    ══════════════════════════════════════════════════════════════════
+    TYPESCRIPT FILES TO CREATE
+    ══════════════════════════════════════════════════════════════════
+    See the src/ folder structure below. Create these .ts files:
+
+    src/types.ts
+    ─────────────
+    Define your types here. Key types to create:
+
+      type Difficulty = 'easy' | 'medium' | 'hard';
+
+      interface Question {
+        id:          number;
+        text:        string;
+        options:     string[];      // always 4 options
+        correctIndex: number;      // which index (0–3) is correct
+        difficulty:  Difficulty;
+        category:    string;
+        explanation?: string;      // why the answer is correct (optional)
+      }
+
+      // Discriminated union for quiz state
+      type QuizState =
+        | { phase: 'idle' }
+        | { phase: 'active';   currentIndex: number; score: number; timeLeft: number }
+        | { phase: 'complete'; score: number; total: number; answers: UserAnswer[] }
+
+      interface UserAnswer {
+        questionId:    number;
+        selectedIndex: number;
+        correct:       boolean;
+        timeSpent:     number;  // seconds spent on this question
+      }
+
+      interface QuizConfig {
+        difficulty: Difficulty | 'all';
+        category:   string;
+        timeLimit:  number;  // seconds per question
+      }
+
+    src/questions.ts
+    ─────────────────
+    An array of Question objects. Write at least 10. Example:
+      export const questions: Question[] = [
+        {
+          id: 1,
+          text: 'What does the "typeof" operator return for null?',
+          options: ['null', 'undefined', 'object', 'boolean'],
+          correctIndex: 2,
+          difficulty: 'medium',
+          category: 'JavaScript',
+          explanation: 'typeof null returns "object" — this is a famous JavaScript bug.'
+        },
+        // ...more questions
+      ];
+
+    src/quiz.ts
+    ────────────
+    The main quiz logic. Create a Quiz class or module:
+
+      STEP 1 — State
+        let state: QuizState = { phase: 'idle' };
+        let config: QuizConfig;
+        let activeQuestions: Question[];
+        let timer: number;  // setInterval ID
+
+      STEP 2 — startQuiz(cfg: QuizConfig)
+        • Filter questions by difficulty and category
+        • Shuffle the filtered questions (Fisher-Yates shuffle)
+        • Set state to { phase: 'active', currentIndex: 0, score: 0, timeLeft: cfg.timeLimit }
+        • Show the quiz screen, hide the start screen
+        • Call showQuestion(0)
+        • Start the timer
+
+      STEP 3 — showQuestion(index: number)
+        • Get activeQuestions[index]
+        • Update progress bar width and "Question X of Y" text
+        • Set question text
+        • Clear and rebuild the answer buttons:
+            question.options.forEach((option, i) => {
+              const btn = document.createElement('button');
+              btn.textContent = option;
+              btn.addEventListener('click', () => selectAnswer(i));
+              answersEl.appendChild(btn);
+            });
+        • Disable the "Next" button until an answer is selected
+
+      STEP 4 — selectAnswer(selectedIndex: number)
+        • Mark the chosen button as selected
+        • Highlight correct and incorrect answers:
+            - Correct answer button: add class 'correct'
+            - Wrong answer button (if selected): add class 'wrong'
+        • Stop the timer
+        • Update score if correct
+        • If the question has an explanation, show it
+        • Enable the "Next" button
+
+      STEP 5 — Timer
+        Start a 1-second interval that decrements timeLeft.
+        If timeLeft hits 0, auto-advance to the next question
+        (count it as wrong).
+
+      STEP 6 — nextQuestion()
+        • Move to the next question or call showResults() if done
+
+      STEP 7 — showResults()
+        • Set state to { phase: 'complete', ... }
+        • Calculate percentage
+        • Determine grade message based on percentage
+        • Render the review list (show each question, user's answer, correct answer)
+        • Show results screen
+
+      STEP 8 — Reset
+        The "Try Again" button resets state to 'idle' and shows the start screen.
+
+    ══════════════════════════════════════════════════════════════════
+    STRETCH GOALS
+    ══════════════════════════════════════════════════════════════════
+    → Save the high score in localStorage
+    → Add a leaderboard (array of {name, score, date} in localStorage)
+    → Animate questions sliding in and out
+    → Add sound effects using the Web Audio API
+    -->
+
+    <!-- Build your HTML here -->
+    <script src="dist/quiz.js"></script>
+  </body>
+</html>

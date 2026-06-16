@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 2.2 — Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  PROJECT 2.2 — ROCK PAPER SCISSORS                              ║
+    ║  Lecture Notes: 09. JavaScript Foundations                       ║
+    ╚══════════════════════════════════════════════════════════════════╝
+
+    WHAT YOU'RE BUILDING:
+    ─────────────────────
+    A browser-based Rock Paper Scissors game that you play against the
+    computer. The computer picks randomly; you pick by clicking a button.
+    The game tracks score across multiple rounds until one player reaches
+    a target (e.g. first to 5 wins).
+
+    ══════════════════════════════════════════════════════════════════
+    HTML STRUCTURE TO BUILD
+    ══════════════════════════════════════════════════════════════════
+
+    1. SCOREBOARD
+       Two score counters side by side — one for you, one for the
+       computer. Each shows a name ("You" / "Computer") and a number.
+       Include a round counter ("Round 3 of 5") somewhere near the top.
+
+    2. RESULT DISPLAY
+       A large central area that shows:
+         • The round result message: "You win this round!" / "Computer
+           wins!" / "It's a tie!"
+         • Both choices as large emoji: "✊ vs ✌️"
+         • This area should be hidden initially (nothing to show yet)
+
+    3. CHOICE BUTTONS
+       Three large, clickable buttons — one for each choice.
+       Use emoji for the icons: ✊ Rock, ✋ Paper, ✌️ Scissors
+       Each button must have an aria-label attribute for accessibility:
+         <button aria-label="Choose Rock">✊</button>
+
+    4. GAME OVER STATE
+       When someone reaches the winning score, hide the choice buttons
+       and show a "Game Over" screen with:
+         • Who won the game
+         • Final score
+         • A "Play Again" button that resets everything
+
+    ══════════════════════════════════════════════════════════════════
+    JAVASCRIPT TASKS (in script.js)
+    ══════════════════════════════════════════════════════════════════
+
+    TASK 1 — Computer choice
+    The computer's choice must be random each round. Use Math.random()
+    to generate a number, then map it to 'rock', 'paper', or 'scissors'.
+    Math.random() returns a decimal between 0 and 1. Think about how to
+    use that to pick from 3 options. Hint: Math.floor() + an array.
+
+    TASK 2 — Determine the winner
+    Write a function called getResult(playerChoice, computerChoice) that
+    returns 'player', 'computer', or 'tie'. Cover all 9 possible
+    combinations. An if/else chain or a lookup object both work fine.
+
+    TASK 3 — Update the DOM
+    After each round, update the page to show:
+      • Both choices as emoji
+      • The round result message
+      • The updated score for whoever won the round
+
+    Write a helper function that converts 'rock'/'paper'/'scissors'
+    to the right emoji.
+
+    TASK 4 — Track score and check for game over
+    Keep two variables for the scores (playerScore, computerScore).
+    After updating the score each round, check if either has reached
+    the winning number (e.g. 5). If so:
+      • Hide the buttons
+      • Show the "Game Over" screen with the final result
+
+    TASK 5 — Play Again
+    The "Play Again" button should reset both scores to 0, clear the
+    result display, and show the buttons again. Reset the round counter.
+
+    ══════════════════════════════════════════════════════════════════
+    STYLING GOALS (in style.css)
+    ══════════════════════════════════════════════════════════════════
+    • The choice buttons should be large and feel satisfying to click.
+      Use a big font-size for the emoji, rounded corners, and a hover
+      transform (scale up slightly).
+    • On hover, each button should have a distinct coloured ring or
+      background — rock: one colour, paper: another, scissors: another.
+    • The result message should be visually distinct depending on outcome:
+      win = green tint, loss = red tint, tie = grey/yellow tint.
+    • The scoreboard should be clearly readable and prominent at the top.
+
+    ══════════════════════════════════════════════════════════════════
+    STRETCH GOALS (optional)
+    ══════════════════════════════════════════════════════════════════
+    → Add a short CSS animation when the result is revealed (shake the
+      losing choice, pulse the winning one)
+    → Let the player choose how many rounds to play (3, 5, or 10)
+      via a selector before the game starts
+    → Add a "history" log below the game showing each round's choices
+    → Add keyboard shortcuts: R for rock, P for paper, S for scissors
+    -->
+
+    <!-- Build your HTML here -->
+
+    <script src="script.js"></script>
+  </body>
+</html>

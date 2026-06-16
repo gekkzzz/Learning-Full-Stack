@@ -1,0 +1,54 @@
+/*
+  PROJECT 2.2 — ROCK PAPER SCISSORS
+  ====================================
+  Style your game here. Below are the key areas to style and what
+  they should feel like when you're done.
+
+  SUGGESTED LAYOUT:
+  ─────────────────
+  • Centre everything on the page (use Flexbox on body or a wrapper div)
+  • The game should look good at around 500–600px wide
+  • Use a fun, game-like colour palette — doesn't have to be minimal
+
+  KEY ELEMENTS TO STYLE:
+  ──────────────────────
+
+  Scoreboard:
+    • Side-by-side layout with a divider or "vs" in the middle
+    • Large numbers for the scores — these are the most important info
+    • Make the current leader's score stand out (bold, colour, or size)
+
+  Choice buttons:
+    • Very large clickable area — at least 100×100px, ideally bigger
+    • Large emoji (font-size: 3–4rem)
+    • Rounded corners (border-radius: 50% for circles or ~16px for
+      rounded squares)
+    • Hover state: scale up (transform: scale(1.1)) with a transition
+    • Each button has a unique hover accent colour:
+        Rock     → warm red/orange ring or background
+        Paper    → cool blue ring or background
+        Scissors → yellow/gold ring or background
+    • Active state (when you click): scale down slightly for a "press"
+      feel (transform: scale(0.95))
+
+  Result display:
+    • Large, centred text for the result message
+    • The choices shown as large emoji side by side with a "vs" divider
+    • Background tint based on outcome:
+        Win  → subtle green background
+        Loss → subtle red background
+        Tie  → subtle grey or yellow background
+
+  Game over screen:
+    • A distinct card or overlay that appears over the game
+    • Large declaration of who won
+    • Final score displayed clearly
+    • Play Again button — prominent and satisfying to click
+
+  Transitions:
+    • All hover and active states should use a transition (0.1–0.2s ease)
+    • The result display appearing should fade in (opacity transition or
+      CSS animation with animation: fadeIn 0.3s ease)
+*/
+
+/* Start your styles below */

@@ -1,0 +1,46 @@
+/*
+  PROJECT 2.3 — ETCH-A-SKETCH
+  ==============================
+  Style your drawing app here.
+
+  KEY THINGS TO STYLE:
+  ────────────────────
+
+  Layout:
+    • Centre the whole app on the page using Flexbox on the body
+    • A clear heading at the top
+    • Controls bar below the heading
+    • The grid below the controls
+
+  Controls bar:
+    • Flex row with a gap between each control group
+    • Buttons should have consistent padding and look like buttons
+    • The active mode button should look visually selected —
+      give it a different background colour or a coloured border/ring
+    • The colour picker (<input type="color">) is styled by the OS
+      but you can wrap it and style the wrapper
+
+  The grid container:
+    • Fixed square size — a common choice is 512px × 512px
+      or use min(512px, 90vw) so it scales on smaller screens
+    • display: flex; flex-wrap: wrap  (cells line up in rows)
+      — OR — display: grid; grid-template-columns: repeat(var(--size), 1fr)
+      if you set a CSS variable for the size from JavaScript
+    • A visible border around the whole grid
+    • cursor: crosshair so the user knows they can draw
+
+  Individual cells:
+    • No margin, no padding (gaps would break the grid alignment)
+    • box-sizing: border-box
+    • A very subtle border — 1px solid rgba(0,0,0,0.05) — so the grid
+      lines are barely visible (helps show the structure without being
+      distracting). Remove the border if it bothers you.
+    • transition: background-color 0.05s so colouring feels smooth
+
+  Prevent text selection while drawing:
+    • Add user-select: none to the grid container so the browser
+      doesn't try to select text when the user drags the mouse
+    • Also add -webkit-user-select: none for Safari
+*/
+
+/* Start your styles below */

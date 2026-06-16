@@ -1,55 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lasagna</title>
-</head>
-<body>
-    <a href="../index.html">Home</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <h1>Lasagna</h1>
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  PROJECT 2.1 — RECIPE PAGE (Lasagna)                             ║
+    ║  Lecture Notes: 04. HTML Foundations                             ║
+    ╚══════════════════════════════════════════════════════════════════╝
 
-    <img src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=800"
-         alt="Classic lasagna in a baking dish"
-         width="500">
+    WHAT YOU'RE BUILDING:
+    ─────────────────────
+    An individual recipe page. This is one of three example recipe
+    pages. Each one should follow the same structure.
 
-    <h2>Description</h2>
-    <p>
-        Lasagna is the ultimate comfort food — layers of rich meat sauce, creamy ricotta, and gooey melted mozzarella
-        stacked between sheets of tender pasta. It is a classic Italian-American dish that feeds a crowd and tastes
-        even better the next day.
-    </p>
-    <p>
-        This recipe uses a simple homemade bolognese-style meat sauce and a three-cheese filling to create a hearty,
-        satisfying meal that is perfect for Sunday dinners or meal prep.
-    </p>
+    You're welcome to change the recipe to something you actually like
+    cooking. The content is just a starting point.
 
-    <h2>Ingredients</h2>
-    <ul>
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 1 — PAGE TITLE AND BACK LINK
+    ══════════════════════════════════════════════════════════════════
+    In <head>: <title>Lasagna — My Recipe Collection</title>
+
+    In <body>, the first element should be a link back to the homepage:
+      <a href="../index.html">← Back to all recipes</a>
+
+    The "../" means "go up one folder level" — from /recipes/ back
+    to the root where index.html lives.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 2 — RECIPE TITLE
+    ══════════════════════════════════════════════════════════════════
+    Add an <h1> with the recipe name. There should only be ONE <h1>
+    per page — it represents the main topic of the page.
+
+      <h1>Classic Lasagna</h1>
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 3 — RECIPE IMAGE
+    ══════════════════════════════════════════════════════════════════
+    Add an image of the dish:
+      <img src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=800"
+           alt="Classic lasagna in a baking dish"
+           width="500" />
+
+    The "alt" attribute is required and describes the image for:
+      • Screen readers (accessibility)
+      • When the image fails to load
+      • Search engines
+
+    The width and height attributes prevent "layout shift" — the page
+    jumping around when the image loads.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 4 — DESCRIPTION
+    ══════════════════════════════════════════════════════════════════
+    Add an <h2> heading called "Description" followed by one or two
+    <p> (paragraph) elements describing the dish. Write in your own
+    words — what does it taste like? When would you make it?
+
+    This teaches you when to use <p> vs. when to use headings.
+    Headings (<h1>–<h6>) mark sections. <p> is for regular text.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 5 — INGREDIENTS
+    ══════════════════════════════════════════════════════════════════
+    Add an <h2> heading called "Ingredients" followed by an
+    UNORDERED list <ul> of ingredients:
+
+      <ul>
         <li>12 lasagna noodles</li>
         <li>1 lb ground beef</li>
-        <li>1 jar (24 oz) marinara sauce</li>
-        <li>15 oz ricotta cheese</li>
-        <li>2 cups shredded mozzarella cheese</li>
-        <li>1/2 cup grated Parmesan cheese</li>
-        <li>1 egg</li>
-        <li>2 cloves garlic, minced</li>
-        <li>1 tsp Italian seasoning</li>
-        <li>Salt and pepper to taste</li>
-    </ul>
+        ...
+      </ul>
 
-    <h2>Steps</h2>
-    <ol>
-        <li>Preheat oven to 375°F (190°C).</li>
-        <li>Cook lasagna noodles according to package directions; drain and set aside.</li>
-        <li>Brown ground beef with garlic in a skillet over medium heat. Drain fat, then stir in marinara sauce and Italian seasoning. Simmer 10 minutes.</li>
-        <li>In a bowl, mix ricotta, egg, half the mozzarella, and half the Parmesan. Season with salt and pepper.</li>
-        <li>Spread a thin layer of meat sauce on the bottom of a 9x13 inch baking dish.</li>
-        <li>Layer 3 noodles over the sauce, then spread 1/3 of the ricotta mixture, then 1/3 of the remaining meat sauce. Repeat layers twice more.</li>
-        <li>Top with remaining mozzarella and Parmesan.</li>
-        <li>Cover with foil and bake 25 minutes. Remove foil and bake another 20 minutes until bubbly and golden.</li>
-        <li>Let rest 15 minutes before slicing and serving.</li>
-    </ol>
-</body>
+    Unordered lists use bullet points — correct for ingredients
+    because the order doesn't matter.
+
+    Suggested ingredients for this recipe:
+      • 12 lasagna noodles
+      • 1 lb (450g) ground beef
+      • 1 jar (680g) marinara sauce
+      • 500g ricotta cheese
+      • 2 cups shredded mozzarella
+      • 1/2 cup grated Parmesan
+      • 1 egg
+      • 2 cloves garlic, minced
+      • 1 tsp Italian seasoning
+      • Salt and pepper to taste
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 6 — STEPS
+    ══════════════════════════════════════════════════════════════════
+    Add an <h2> heading called "Steps" followed by an ORDERED list
+    <ol> of instructions:
+
+      <ol>
+        <li>Preheat oven to 190°C (375°F).</li>
+        <li>...</li>
+      </ol>
+
+    Ordered lists use numbers — correct for instructions where
+    the sequence matters.
+
+    Suggested steps:
+      1. Preheat oven to 190°C (375°F)
+      2. Cook noodles per package instructions; drain and set aside
+      3. Brown the beef with garlic; drain fat; stir in sauce; simmer 10 mins
+      4. Mix ricotta, egg, half the mozzarella, half the Parmesan; season
+      5. Spread a thin layer of sauce in a 23×33cm baking dish
+      6. Layer: 3 noodles, 1/3 ricotta mixture, 1/3 sauce. Repeat x3
+      7. Top with remaining mozzarella and Parmesan
+      8. Cover with foil; bake 25 mins; remove foil; bake 20 more mins
+      9. Rest 15 minutes before slicing
+
+
+    ══════════════════════════════════════════════════════════════════
+    STRETCH GOALS
+    ══════════════════════════════════════════════════════════════════
+    → Add a "Prep time" and "Cook time" below the image
+    → Add a "Serves" count
+    → Add a <blockquote> with a cooking tip
+    → Link to a YouTube video of someone making this dish
+    -->
+
+    <!-- Add your <title> here -->
+  </head>
+  <body>
+
+    <!-- Build your recipe page here — see tasks above -->
+
+  </body>
 </html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 2.9 — Todo App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  PROJECT 2.9 — TODO APP                                          ║
+    ║  Lecture Notes: 11. JavaScript Advanced                          ║
+    ╚══════════════════════════════════════════════════════════════════╝
+
+    WHAT YOU'RE BUILDING:
+    ─────────────────────
+    A fully functional to-do list app that persists data between page
+    loads using localStorage. This project will teach you to manage
+    application state in an array and sync it to the DOM.
+
+    Features to implement:
+      • Add new todos by typing and pressing Enter or clicking Add
+      • Mark todos as complete (toggle with a click or checkbox)
+      • Delete individual todos
+      • Filter view: All / Active / Completed
+      • Clear all completed todos at once
+      • Todos persist in localStorage (survive page refresh)
+      • Show a count of remaining active items
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 1 — APP HEADER
+    ══════════════════════════════════════════════════════════════════
+    A simple <header> with:
+      • An <h1> for the app title (e.g. "Things to Do")
+      • The count of active todos — id="todo-count"
+        (will be updated by JavaScript)
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 2 — INPUT FORM
+    ══════════════════════════════════════════════════════════════════
+    A form for adding new todos:
+      • <form id="add-form">
+      • A text input:
+          id="new-todo-input"
+          placeholder="What needs to be done?"
+          autocomplete="off"
+          required
+      • A submit button (text: "Add" or a "+" icon)
+
+    In JavaScript, listen to the form's 'submit' event.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 3 — FILTER BAR
+    ══════════════════════════════════════════════════════════════════
+    Three filter buttons to show all, active, or completed todos:
+      <div class="filter-bar" role="group" aria-label="Filter todos">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="active">Active</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+
+    The data-filter attribute tells JavaScript which filter to apply.
+    Only one button should have the "active" class at a time.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 4 — TODO LIST
+    ══════════════════════════════════════════════════════════════════
+    An empty <ul id="todo-list"> — JavaScript will populate this.
+
+    Each todo item (built by JS) should look like:
+      <li class="todo-item" data-id="...">
+        <button class="toggle-btn" aria-label="Mark as complete">✓</button>
+        <span class="todo-text">Buy groceries</span>
+        <button class="delete-btn" aria-label="Delete todo">×</button>
+      </li>
+
+    When a todo is completed, add a "completed" class to the <li>
+    so you can style it differently (strikethrough, dimmed text).
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 5 — EMPTY STATE
+    ══════════════════════════════════════════════════════════════════
+    A paragraph or div that shows when there are no todos to display
+    (either the list is empty, or all todos are filtered out):
+      id="empty-message"
+      Text: "Nothing here! Add a new task above." (or similar)
+    Show/hide this with JavaScript depending on the filtered list.
+
+
+    ══════════════════════════════════════════════════════════════════
+    TASK 6 — FOOTER ACTIONS
+    ══════════════════════════════════════════════════════════════════
+    A <footer> below the list with a "Clear completed" button:
+      <button id="clear-completed">Clear completed</button>
+    This button should only be visible when there are completed todos.
+
+    ══════════════════════════════════════════════════════════════════
+    JAVASCRIPT TASKS (see script.js)
+    ══════════════════════════════════════════════════════════════════
+    ══════════════════════════════════════════════════════════════════
+    STYLING GOALS (see style.css)
+    ══════════════════════════════════════════════════════════════════
+
+    ══════════════════════════════════════════════════════════════════
+    STRETCH GOALS
+    ══════════════════════════════════════════════════════════════════
+    → Drag to reorder todos (look into the HTML Drag and Drop API)
+    → Edit a todo by double-clicking its text
+    → Add due dates to todos and sort/highlight overdue ones
+    → Split into ES modules (import/export in separate .js files)
+    -->
+
+    <!-- Build your HTML here -->
+    <script src="script.js"></script>
+  </body>
+</html>

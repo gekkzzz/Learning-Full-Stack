@@ -1,0 +1,294 @@
+/*
+  PROJECT 2.7 — SEO BLOG PAGE
+  ═════════════════════════════
+  Lecture Notes: 08. SEO and Accessibility
+
+  Your goal is a clean, readable blog layout that also meets
+  accessibility standards. Think of a real publication like
+  The Verge or Smashing Magazine — not flashy, just readable.
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 1 — RESET AND CUSTOM PROPERTIES
+  ══════════════════════════════════════════════════════════
+  Start with a box-sizing reset:
+    *, *::before, *::after { box-sizing: border-box; }
+
+  Define CSS custom properties on :root for your colour palette
+  and typography so you can change the whole page in one place:
+    --colour-text:       #1a1a1a   (near-black — good contrast on white)
+    --colour-muted:      #6b7280   (grey for dates, bylines, captions)
+    --colour-accent:     your choice — used for links and headings
+    --colour-bg:         #ffffff
+    --colour-surface:    #f9fafb   (slightly off-white for sidebar, tables)
+    --colour-border:     #e5e7eb
+
+    --font-body:    'Georgia', serif   (or any serif you like)
+    --font-ui:      system-ui, sans-serif
+    --font-mono:    'Courier New', monospace
+
+    --max-width:    720px   (maximum article width — keeps lines readable)
+    --line-height:  1.7     (generous spacing for long-form reading)
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 2 — SKIP LINK (must be task 2, before any layout)
+  ══════════════════════════════════════════════════════════
+  The skip link is visually hidden until focused:
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--colour-accent);
+      color: #fff;
+      z-index: 9999;
+      border-radius: 0 0 4px 4px;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 3 — GLOBAL FOCUS STYLES
+  ══════════════════════════════════════════════════════════
+  NEVER remove the focus outline. Add custom visible focus:
+    :focus-visible {
+      outline: 3px solid var(--colour-accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+  This style applies when using a keyboard. Mouse users won't see it.
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 4 — BODY AND TYPOGRAPHY BASE
+  ══════════════════════════════════════════════════════════
+  body:
+    • font-family: var(--font-body)
+    • line-height: var(--line-height)
+    • color: var(--colour-text)
+    • background: var(--colour-bg)
+
+  h1, h2, h3:
+    • font-family: var(--font-ui)
+    • line-height: 1.2  (headings should be tighter)
+
+  p:
+    • max-width: 65ch  (characters — the ideal readable line length)
+    • margin-bottom: 1.25rem
+
+  a (links):
+    • color: var(--colour-accent)
+    • text-underline-offset: 3px  (makes underlines look cleaner)
+    • Add :hover styles
+
+  img:
+    • max-width: 100%
+    • height: auto  (prevent stretching)
+    • display: block
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 5 — SITE HEADER
+  ══════════════════════════════════════════════════════════
+  The header sits at the top of every page.
+    • Stick to the top with position: sticky; top: 0;
+    • background: var(--colour-bg)
+    • border-bottom: 1px solid var(--colour-border)
+    • z-index: 100 (stays above article content as you scroll)
+
+  Inside the header, use flexbox to put the logo on the left
+  and nav links on the right:
+    .site-header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+  Nav links:
+    • List style none (if using a <ul>)
+    • Display as flex with a gap
+    • No underline by default — add underline on :hover
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 6 — BREADCRUMB
+  ══════════════════════════════════════════════════════════
+  The breadcrumb sits in a narrow band between the header
+  and the article:
+    .breadcrumb {
+      max-width: var(--max-width);
+      margin: 1rem auto;
+      padding: 0 1.5rem;
+      font-size: 0.875rem;
+      color: var(--colour-muted);
+      font-family: var(--font-ui);
+    }
+
+  Style the breadcrumb list:
+    • Remove list style and padding/margin
+    • Display as flex with gap: 0.5rem
+    • Add "›" separator between items using ::after pseudo-element
+      on li:not(:last-child)::after { content: "›"; }
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 7 — PAGE LAYOUT (article + sidebar)
+  ══════════════════════════════════════════════════════════
+  Build a two-column layout on wider screens:
+    .page-layout {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 3rem;
+      align-items: start;
+    }
+
+  On mobile (below 768px), collapse to single column:
+    @media (max-width: 768px) {
+      .page-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 8 — ARTICLE STYLES
+  ══════════════════════════════════════════════════════════
+  Article header (meta info above the content):
+    • h1: font-size clamp(1.75rem, 4vw, 2.5rem)
+      (clamp scales between min and max based on viewport)
+    • The date and author: font-family: var(--font-ui);
+      color: var(--colour-muted); font-size: 0.9rem
+
+  Hero image (<figure> wrapping the main image):
+    • margin: 2rem 0
+    • The <img>: width: 100%; border-radius: 8px;
+    • The <figcaption>: font-size: 0.85rem; color: var(--colour-muted);
+      font-family: var(--font-ui); margin-top: 0.5rem; text-align: center;
+
+  Headings inside the article:
+    • h2: font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 0.75rem
+    • h3: font-size: 1.2rem; margin-top: 1.75rem; margin-bottom: 0.5rem
+
+  Lists inside the article:
+    • Give them padding-left: 1.5rem
+    • li: margin-bottom: 0.4rem
+
+  Blockquote:
+    • border-left: 4px solid var(--colour-accent)
+    • padding: 1rem 1.5rem
+    • margin: 2rem 0
+    • background: var(--colour-surface)
+    • font-style: italic
+    • p inside: margin-bottom: 0
+
+  Code/pre (if you have any):
+    • font-family: var(--font-mono)
+    • background: var(--colour-surface)
+    • padding: 0.15em 0.4em
+    • border-radius: 3px
+    • font-size: 0.9em
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 9 — TABLE STYLES
+  ══════════════════════════════════════════════════════════
+  Tables are unstyled by default and look terrible. Fix that:
+    table {
+      width: 100%;
+      border-collapse: collapse;  ← removes gaps between cell borders
+      margin: 2rem 0;
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+    }
+
+    caption {
+      font-weight: 600;
+      text-align: left;
+      margin-bottom: 0.5rem;
+      color: var(--colour-text);
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--colour-border);
+    }
+
+    th {
+      background: var(--colour-surface);
+      font-weight: 600;
+    }
+
+    tbody tr:hover {
+      background: var(--colour-surface);
+    }
+
+  Make the table horizontally scrollable on mobile:
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    (Wrap your <table> in a div.table-wrapper in HTML)
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 10 — SIDEBAR
+  ══════════════════════════════════════════════════════════
+  The <aside> sits in the right column. Style it so it's
+  visually distinct from the main article:
+    .sidebar {
+      position: sticky;
+      top: 80px;  /* accounts for the sticky header */
+    }
+
+  Related articles section:
+    • h2 or h3 heading
+    • List of links (no bullets, just styled links)
+    • A subtle border or background to separate from article
+
+  Newsletter form:
+    • An input[type="email"] styled to be full-width
+    • A submit button with your accent colour
+    • A clear <label> above the input (NOT a placeholder-only label)
+    • On :focus, the input gets a coloured border (not just the default)
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 11 — FOOTER
+  ══════════════════════════════════════════════════════════
+    footer {
+      border-top: 1px solid var(--colour-border);
+      margin-top: 4rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-family: var(--font-ui);
+      font-size: 0.875rem;
+      color: var(--colour-muted);
+    }
+
+
+  ══════════════════════════════════════════════════════════
+  STRETCH GOALS
+  ══════════════════════════════════════════════════════════
+  → Dark mode: add @media (prefers-color-scheme: dark) with
+    a full set of colour overrides using your CSS variables
+  → A reading progress bar at the top of the page
+    (thin line that fills as you scroll down)
+  → Print styles: @media print — hide header/sidebar/footer,
+    expand article to full width, show link URLs after <a> tags
+      @media print {
+        a[href]::after { content: " (" attr(href) ")"; }
+      }
+*/
+
+/* Start your styles below */

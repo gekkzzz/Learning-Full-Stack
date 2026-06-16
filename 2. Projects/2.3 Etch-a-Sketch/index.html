@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 2.3 — Etch-a-Sketch</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  PROJECT 2.3 — ETCH-A-SKETCH                                    ║
+    ║  Lecture Notes: 09. JavaScript Foundations                       ║
+    ╚══════════════════════════════════════════════════════════════════╝
+
+    WHAT YOU'RE BUILDING:
+    ─────────────────────
+    A digital Etch-a-Sketch drawing grid in the browser. The user
+    hovers their mouse over a grid of squares to "draw" by changing
+    the colour of each square they touch. Buttons let them clear the
+    canvas, change the grid size, and switch drawing modes.
+
+    ══════════════════════════════════════════════════════════════════
+    HTML STRUCTURE TO BUILD
+    ══════════════════════════════════════════════════════════════════
+
+    1. CONTROLS BAR
+       A toolbar above the grid with these controls:
+
+       • Grid Size button: when clicked, prompts the user to enter a
+         number (e.g. "Enter grid size (1–64)") and rebuilds the grid
+         at that size. The grid must always fill the same total space,
+         so more squares = smaller squares.
+
+       • Clear button: resets all squares to their default (no colour).
+
+       • Drawing mode selector — buttons or a toggle for:
+           ○ Classic mode: colours squares in a single solid colour
+           ○ Rainbow mode: each square gets a random colour
+           ○ Darken mode: each square gets 10% darker each time
+             you hover over it (starts transparent, gets to black after
+             10 passes)
+
+       • A colour picker (<input type="color">) for classic mode so
+         the user can choose their drawing colour.
+
+    2. THE GRID
+       A square container div (e.g. id="grid") that holds all the
+       individual cell divs. You will create cells in JavaScript —
+       do NOT create them manually in the HTML.
+
+       The container should be a fixed size (e.g. 512×512px or 100%
+       of a max-width square). The cells inside will be generated
+       to fill it exactly.
+
+    ══════════════════════════════════════════════════════════════════
+    JAVASCRIPT TASKS (in script.js)
+    ══════════════════════════════════════════════════════════════════
+
+    TASK 1 — createGrid(size)
+    Write a function that:
+      a. Clears any existing cells from the grid container
+      b. Calculates cell size: containerSize / size (in pixels)
+      c. Creates size × size div elements
+      d. Sets each cell's width and height to the calculated size
+      e. Appends each cell to the grid container
+      f. Attaches a 'mouseover' event listener to each cell that
+         calls your drawCell() function
+
+    Call this function when the page loads with a default size (16).
+
+    TASK 2 — drawCell(cell)
+    Write a function that colours a cell depending on the active mode.
+
+    In 'classic' mode:
+      Set cell.style.backgroundColor to the current colour from the
+      colour picker. Read it with colourPicker.value.
+
+    In 'rainbow' mode:
+      Generate a random HSL colour. Use Math.random() to create a
+      random hue between 0–360:
+        cell.style.backgroundColor = `hsl(${Math.floor(Math.random() * 360)}, 100%, 50%)`;
+
+    In 'darken' mode:
+      Each cell starts with 0% opacity of black. Each hover increases
+      the darkness by 10%. You need to track how dark each cell is.
+      One approach: store a data attribute on the cell (data-darkness="0")
+      and increase it by 0.1 each hover until it reaches 1.
+        cell.style.backgroundColor = `rgba(0, 0, 0, ${cell.dataset.darkness})`;
+
+    TASK 3 — Drawing only when mouse is held down
+    Currently, every cell colours as you hover. Change this so drawing
+    only happens when the mouse button is being held down.
+
+    How to do it:
+      • Track a boolean variable: let isDrawing = false;
+      • Add a 'mousedown' event on the grid → set isDrawing = true
+      • Add a 'mouseup' event on the document → set isDrawing = false
+      • In drawCell(), return early if !isDrawing
+
+    TASK 4 — Clear button
+    Reset all cells. Loop through all cells in the grid and set
+    backgroundColor to '' (empty string) which removes the inline style.
+    Also reset any data-darkness attributes back to '0'.
+
+    TASK 5 — Grid size button
+    Use window.prompt() to ask for a number between 1 and 64.
+    Validate the input (must be a number, must be between 1 and 64).
+    If valid, call createGrid() with the new size.
+
+    ══════════════════════════════════════════════════════════════════
+    STYLING GOALS (in style.css)
+    ══════════════════════════════════════════════════════════════════
+    • The grid should be a perfect square, centred on the page
+    • Inside the grid, cells should be arranged with CSS Flexbox +
+      flex-wrap: wrap (or CSS Grid). They must line up perfectly with
+      no gaps (no margin/padding on cells, use box-sizing: border-box)
+    • The controls bar should be clean and easy to use
+    • Active mode buttons should look visually selected (different
+      background or border from inactive buttons)
+    • The grid container should have a clear border so the drawing area
+      is obvious
+
+    ══════════════════════════════════════════════════════════════════
+    STRETCH GOALS (optional)
+    ══════════════════════════════════════════════════════════════════
+    → Add an eraser mode (sets cells back to white/transparent)
+    → Allow touch drawing (add 'touchmove' listeners for mobile)
+    → Add an "Export" button that downloads the grid as a PNG using
+      the Canvas API
+    → Add an undo feature (Ctrl+Z) — store the last N actions in an
+      array and reverse the last one
+    -->
+
+    <!-- Build your HTML here -->
+
+    <script src="script.js"></script>
+  </body>
+</html>

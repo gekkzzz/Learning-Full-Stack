@@ -1,0 +1,64 @@
+/*
+  PROJECT 2.4 — CALCULATOR
+  ==========================
+  Style your calculator here. Aim for the look of a modern phone
+  calculator — clean, minimal, with clearly distinct button types.
+
+  LAYOUT:
+  ──────
+  • Centre the calculator on the page (Flexbox on body works well)
+  • The calculator itself: a fixed width (~320px), no wider
+  • Use CSS Grid for the button layout:
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+  • The "0" button should span 2 columns:
+      grid-column: span 2;
+
+  DISPLAY AREA:
+  ─────────────
+  • Background: slightly darker than the button area
+  • Padding on all sides, text aligned to the right
+  • Previous operand (small text): ~1rem, muted colour, min-height
+    so the display doesn't jump when it's empty
+  • Current operand (large text): ~2.5rem, bold or heavy weight
+  • Both should have word-break: break-all to handle very long numbers
+
+  BUTTON STYLES:
+  ──────────────
+  Three distinct button types:
+
+  Number buttons (0–9, decimal):
+    • Medium grey background
+    • Rounded (border-radius: 50% for circles, or ~10px for rounded squares)
+    • Font size: 1.25rem
+
+  Function buttons (AC, +/-, %):
+    • Lighter grey background (noticeably different from number buttons)
+    • Same size as number buttons
+
+  Operator buttons (÷, ×, −, +, =):
+    • Accent colour background (orange is the classic choice, but
+      use any colour you like)
+    • White or light text
+    • The active operator (the one you just selected) should have
+      an inverted look: background becomes white, text becomes the
+      accent colour
+
+  All buttons:
+    • No border (border: none)
+    • cursor: pointer
+    • font-family: inherit (so they use the same font as the page)
+    • transition: opacity 0.1s or filter: brightness() on hover
+    • Active state (pressing): slightly darker/dimmer
+    • aspect-ratio: 1 for perfect squares (except the wide 0 button)
+
+  OVERALL CALCULATOR:
+  ───────────────────
+  • border-radius: 20px or so for a pill-like corner on the whole thing
+  • overflow: hidden so button corners don't poke out
+  • box-shadow for depth
+  • Padding around the button grid
+*/
+
+/* Start your styles below */

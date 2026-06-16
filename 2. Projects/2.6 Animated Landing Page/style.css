@@ -1,0 +1,258 @@
+/*
+  PROJECT 2.6 — ANIMATED LANDING PAGE
+  ======================================
+  Start here. Build your styles section by section, top to bottom.
+  Use the comments below as a guide for what to implement.
+
+  SUGGESTED COLOUR PALETTE (dark theme — feel free to change it):
+  ──────────────────────────────────────────────────────────────────
+  Background:  #0f0f1a  (very dark navy)
+  Surface:     #1a1a2e  (slightly lighter dark)
+  Primary:     #6366f1  (indigo)
+  Text:        #f1f5f9  (near white)
+  Muted text:  #94a3b8  (grey-blue)
+  Border:      rgba(255,255,255,0.08)
+
+  Or use a light theme — entirely up to you!
+*/
+
+/* ── Step 1: Custom properties ─────────────────────────────────
+   Define all your colours, spacing, and typography here as
+   CSS variables so they're easy to change globally later.
+   Remember: --variable-name: value;  used as: var(--variable-name)
+   ─────────────────────────────────────────────────────────── */
+
+:root {
+
+}
+
+/* ── Step 2: Reset ─────────────────────────────────────────────
+   A basic reset so all browsers start from the same point.
+   ─────────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── Step 3: Keyframe animations ───────────────────────────────
+   Define @keyframes blocks here BEFORE you use them.
+   You'll need at least these three:
+
+   1. fadeSlideUp — starts at opacity 0 + translateY(30px),
+      ends at opacity 1 + translateY(0).
+      Used for the hero entrance animation.
+
+   2. float — slowly moves an element up and down on a loop.
+      Use translateY between 0px and -14px.
+      Used for the background blob in the hero.
+
+   3. shimmer — animates a gradient background-position from
+      left to right on a loop.
+      Used for the gradient text effect on the hero headline.
+   ─────────────────────────────────────────────────────────── */
+
+
+/* ── Step 4: Scroll-reveal state ───────────────────────────────
+   Elements with [data-animate] start hidden and slide in when
+   the IntersectionObserver in script.js adds the "visible" class.
+
+   Default (hidden) state:
+     opacity: 0
+     transform: translateY(24px)
+     transition: opacity 0.5s ease, transform 0.5s ease
+
+   Visible state (.visible class):
+     opacity: 1
+     transform: translateY(0)
+
+   Also add transition-delay to stagger items in a group:
+   .feature-card:nth-child(2) { transition-delay: 0.1s; }
+   .feature-card:nth-child(3) { transition-delay: 0.2s; }
+   etc.
+   ─────────────────────────────────────────────────────────── */
+
+
+/* ── Step 5: Buttons ───────────────────────────────────────────
+   You'll need two button styles:
+
+   .btn — shared base styles:
+     inline-flex, centred, padding, border-radius: 100px (pill shape),
+     font-weight: 700, cursor: pointer, transition for hover effects
+
+   .btn--primary — filled with your primary colour
+     On hover: darker background + a glow (box-shadow with colour)
+
+   .btn--ghost — transparent with a subtle border
+     On hover: slightly lighter border, slightly lighter text
+
+   Optional: .btn--large for the CTA banner button
+   ─────────────────────────────────────────────────────────── */
+
+
+/* ── Step 6: Hero section ──────────────────────────────────────
+   The hero should:
+     • Take up the full viewport height (min-height: 100vh)
+     • Centre its content both vertically and horizontally (Flexbox)
+     • Have position: relative so the blob pseudo-element can be
+       positioned absolutely inside it
+
+   .hero::before — the background blob:
+     • content: ''
+     • position: absolute, centered with transform: translate(-50%,-50%)
+     • A large circle (width: 500px, height: 500px, border-radius: 50%)
+     • A radial-gradient background in your primary colour at low opacity
+     • animation: float 8s ease-in-out infinite
+     • pointer-events: none so it doesn't block clicks
+
+   .hero__content:
+     • position: relative; z-index: 1 (so it sits above the blob)
+     • max-width: 700px, text-align: center
+
+   .hero__badge:
+     • A small pill-shaped label
+     • Background: your primary colour at ~15% opacity
+     • Border: 1px solid primary at ~40% opacity
+     • animation: fadeSlideUp 0.5s ease both
+
+   .hero__headline:
+     • Large font (clamp(2.5rem, 6vw, 4.5rem))
+     • animation: fadeSlideUp 0.5s ease 0.1s both  (0.1s delay)
+
+   .hero__highlight (the animated word inside the headline):
+     • background: linear-gradient(135deg, colour1, colour2, colour1)
+     • background-size: 200% auto
+     • -webkit-background-clip: text
+     • -webkit-text-fill-color: transparent
+     • background-clip: text
+     • animation: shimmer 3s linear infinite
+
+   .hero__sub:
+     • Muted colour, line-height: 1.7
+     • animation: fadeSlideUp 0.5s ease 0.2s both  (0.2s delay)
+
+   .hero__actions:
+     • Flex row, gap, justify-content: center
+     • animation: fadeSlideUp 0.5s ease 0.3s both  (0.3s delay)
+   ─────────────────────────────────────────────────────────── */
+
+
+/* ── Step 7: Features grid ─────────────────────────────────────
+   .features__grid:
+     display: grid
+     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
+     gap: 1.5rem
+     max-width: your max-width
+     margin: 0 auto
+
+   .feature-card:
+     Background: your surface colour
+     Border: 1px solid your border colour
+     Border-radius, padding
+     Transition for hover
+
+   .feature-card:hover:
+     transform: translateY(-4px)
+     box-shadow with a hint of your primary colour
+     border-color: primary at low opacity
+
+   .feature-card__icon:
+     font-size: 2rem
+     display: block
+     margin-bottom: 1rem
+   ─────────────────────────────────────────────────────────── */
+
+
+/* ── Step 8: How it works (steps) ──────────────────────────────
+   .steps:
+     display: grid
+     grid-template-columns: repeat(3, 1fr)
+     gap: 2rem
+     position: relative  (needed for the ::before line)
+     max-width: your max-width
+     margin: 0 auto
+
+   .steps::before — the dashed connecting line:
+     content: ''
+     position: absolute
+     top: ~28px (centre of the number circles)
+     left: calc(16% + 28px)   right: calc(16% + 28px)
+     height: 0
+     border-top: 2px dashed your-primary-colour at low opacity
+
+   .step__number:
+     A filled circle: width/height: 56px, border-radius: 50%
+     background: your primary colour
+     display: flex, align-items: center, justify-content: center
+     font-weight: 800, margin: 0 auto 1.25rem
+     position: relative; z-index: 1  (sits above the line)
+   ─────────────────────────────────────────────────────────── */
+
+
+/* ── Step 9: Testimonials ──────────────────────────────────────
+   Same grid layout as features (auto-fill, minmax).
+
+   .testimonial:
+     Same card styles as feature-card
+     position: relative  (for the ::before quote mark)
+
+   .testimonial::before — the giant quote mark:
+     content: '"'
+     font-size: 5rem, line-height: 1
+     color: primary, opacity: 0.25
+     position: absolute, top: 0.5rem, left: 1.5rem
+     font-family: Georgia, serif  (serif looks better for quotes)
+     pointer-events: none
+   ─────────────────────────────────────────────────────────── */
+
+
+/* ── Step 10: CTA Banner ───────────────────────────────────────
+   .cta-banner:
+     Full-width, text-align: center
+     padding: 6rem 2rem
+     A gradient background — use linear-gradient with two shades
+     of your primary colour (or use a complementary colour)
+     border-top: 1px solid your primary at low opacity
+
+   .cta-banner h2:
+     Large font, light colour
+
+   .cta-banner p:
+     Muted/light subtext colour, margin-bottom before the button
+   ─────────────────────────────────────────────────────────── */
+
+
+/* ── Step 11: Responsive ───────────────────────────────────────
+   @media (max-width: 768px):
+     .steps → grid-template-columns: 1fr  (stack vertically)
+     .steps::before → display: none  (hide the connecting line)
+     .hero__actions → flex-direction: column, align-items: center
+
+   @media (prefers-reduced-motion: reduce):
+     THIS IS REQUIRED. Users with vestibular disorders or motion
+     sensitivity rely on this setting. Respect it:
+       [data-animate] { opacity: 1; transform: none; transition: none; }
+       *, *::before, *::after {
+         animation-duration: 0.01ms !important;
+         transition-duration: 0.01ms !important;
+       }
+   ─────────────────────────────────────────────────────────── */

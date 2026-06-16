@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 2.4 — Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  PROJECT 2.4 — CALCULATOR                                        ║
+    ║  Lecture Notes: 09. JavaScript Foundations                       ║
+    ╚══════════════════════════════════════════════════════════════════╝
+
+    WHAT YOU'RE BUILDING:
+    ─────────────────────
+    A fully functional calculator with the same layout as a standard
+    phone/desktop calculator. It supports addition, subtraction,
+    multiplication, and division with correct decimal and chained
+    operation handling.
+
+    ══════════════════════════════════════════════════════════════════
+    HTML STRUCTURE TO BUILD
+    ══════════════════════════════════════════════════════════════════
+
+    1. CALCULATOR WRAPPER
+       A single container div (role="application" aria-label="Calculator")
+       that holds everything. Give it a fixed width — calculators look
+       best at around 320px.
+
+    2. DISPLAY
+       Two lines of text:
+         • Previous operand display — smaller, muted text at the top.
+           Shows the previous number and the selected operator
+           (e.g. "125 ×" or empty when starting fresh).
+         • Current operand display — large, prominent text.
+           Shows the number being entered.
+
+    3. BUTTON GRID
+       A 4×5 grid of buttons. The standard layout:
+
+       Row 1:  AC    +/-    %    ÷
+       Row 2:   7     8     9    ×
+       Row 3:   4     5     6    −
+       Row 4:   1     2     3    +
+       Row 5:   0 (spans 2 cols)  .    =
+
+       Each button needs a data attribute to identify its function.
+       Use a data-action attribute:
+         <button data-action="clear">AC</button>
+         <button data-action="operator" data-operator="/">÷</button>
+         <button data-action="digit" data-digit="7">7</button>
+         <button data-action="decimal">.</button>
+         <button data-action="calculate">=</button>
+         <button data-action="negate">+/-</button>
+         <button data-action="percent">%</button>
+
+       The "0" button spans 2 columns:
+         <button data-action="digit" data-digit="0" class="span-two">0</button>
+
+       Operator and = buttons should look different from number buttons.
+       The "AC/C" button is usually a different colour too (light grey).
+
+    ══════════════════════════════════════════════════════════════════
+    ACCESSIBILITY
+    ══════════════════════════════════════════════════════════════════
+    • Add aria-label attributes to operator buttons so screen readers
+      announce them properly:
+        <button data-operator="/" aria-label="divide">÷</button>
+        <button data-operator="*" aria-label="multiply">×</button>
+    • The display elements should have aria-live="polite" so screen
+      readers announce changes as you type.
+
+    ══════════════════════════════════════════════════════════════════
+    JAVASCRIPT TASKS (in script.js)
+    ══════════════════════════════════════════════════════════════════
+    See script.js for the detailed breakdown of all the logic.
+
+    ══════════════════════════════════════════════════════════════════
+    STYLING GOALS (in style.css)
+    ══════════════════════════════════════════════════════════════════
+    See style.css for the detailed breakdown.
+
+    ══════════════════════════════════════════════════════════════════
+    STRETCH GOALS (optional)
+    ══════════════════════════════════════════════════════════════════
+    → Add keyboard support: number keys type digits, operators type
+      operators, Enter or = calculates, Escape clears, Backspace deletes
+    → Handle floating point display issues (0.1 + 0.2 = 0.30000000004)
+      by rounding to a sensible number of decimal places
+    → Add a calculation history panel that shows the last 5 calculations
+    → Add a scientific mode (sin, cos, tan, √, x², π)
+    -->
+
+    <!-- Build your HTML here -->
+
+    <script src="script.js"></script>
+  </body>
+</html>

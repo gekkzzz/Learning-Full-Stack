@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 2.6 — Animated Landing Page</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║  PROJECT 2.6 — ANIMATED LANDING PAGE                            ║
+    ║  Lecture Notes: 07. Advanced HTML and CSS                        ║
+    ╚══════════════════════════════════════════════════════════════════╝
+
+    WHAT YOU'RE BUILDING:
+    ─────────────────────
+    A polished product landing page for an imaginary SaaS app, physical
+    product, or service. The point of this project is not the content —
+    it's the ANIMATIONS and visual polish. By the end, the page should
+    feel alive and professional.
+
+    Choose a product concept to work with. For example:
+      • A productivity app  (e.g. "Flow — task management reinvented")
+      • A design tool       (e.g. "Canvas Pro")
+      • A food delivery app (e.g. "Zest — restaurant-quality meals")
+      • Completely made up — doesn't matter, pick something fun
+
+    ──────────────────────────────────────────────────────────────────
+    SECTION 1 — HERO
+    ──────────────────────────────────────────────────────────────────
+    A full-screen opening section (100vh tall) that immediately grabs
+    attention.
+
+    Must include:
+      • A small "badge" element at the top (e.g. "✨ Now in public beta")
+      • A bold, large headline — the product's main value proposition
+      • A short supporting paragraph (1–2 sentences max)
+      • Two buttons: a primary CTA ("Get Started") and a ghost/outline
+        secondary button ("Watch Demo →")
+      • A decorative background element — use a CSS ::before or ::after
+        pseudo-element to create a coloured gradient blob or radial glow
+        behind the content
+
+    Animations required on this section:
+      • The badge, headline, subtext, and buttons should each animate in
+        on page load with a fade + slide-up effect
+      • Stagger them: each element should start 100–150ms after the previous
+        (use animation-delay in CSS, not JavaScript)
+      • The background blob should slowly float up and down on a loop
+        (use a CSS keyframe animation with translateY)
+      • The highlighted word in your headline (e.g. the product name or a
+        key word) should have a gradient shimmer effect that loops infinitely
+
+    ──────────────────────────────────────────────────────────────────
+    SECTION 2 — FEATURES GRID
+    ──────────────────────────────────────────────────────────────────
+    A grid of 6 cards explaining the product's key features.
+
+    Each card must include:
+      • An emoji icon (large, displayed prominently)
+      • A short bold title
+      • A 1–2 sentence description
+
+    Layout:
+      • 3 columns on desktop, 2 on tablet, 1 on mobile
+      • Use CSS Grid with auto-fill / minmax
+
+    Animation:
+      • Cards should be invisible initially (opacity: 0, translateY: 24px)
+      • They animate in as you scroll down to them — use IntersectionObserver
+        in script.js to add a "visible" class when a card enters the viewport
+      • Stagger the cards: add a short delay (50–100ms) between each card
+        animating in
+      • On hover: the card lifts up slightly with a coloured box-shadow
+
+    ──────────────────────────────────────────────────────────────────
+    SECTION 3 — HOW IT WORKS
+    ──────────────────────────────────────────────────────────────────
+    A step-by-step walkthrough showing how to get started. 3 steps.
+
+    Each step must include:
+      • A numbered circle badge (01, 02, 03) — styled as a filled circle
+      • A step title
+      • A short description
+
+    Layout:
+      • 3 columns side by side on desktop
+      • Stack vertically on mobile
+
+    Detail:
+      • Draw a dashed horizontal line connecting the three numbered circles
+        using a CSS ::before pseudo-element on the container (position: absolute)
+      • The numbers should sit on top of the line (use z-index)
+
+    ──────────────────────────────────────────────────────────────────
+    SECTION 4 — TESTIMONIALS
+    ──────────────────────────────────────────────────────────────────
+    3 quote cards from imaginary happy customers.
+
+    Each card must include:
+      • A large decorative opening quotation mark (") using ::before —
+        make it very large, low opacity, and positioned in the top-left
+        of the card
+      • The quote text itself (1–2 sentences)
+      • The person's name (bold)
+      • Their job title / company (smaller, muted colour)
+
+    Layout:
+      • 3 columns on desktop using auto-fill grid, wraps on smaller screens
+
+    ──────────────────────────────────────────────────────────────────
+    SECTION 5 — CALL TO ACTION BANNER
+    ──────────────────────────────────────────────────────────────────
+    A full-width closing banner that drives sign-ups.
+
+    Must include:
+      • A large headline ("Ready to get started?")
+      • A short supporting line (e.g. "Join 50,000+ users today")
+      • A single large, prominent button
+      • A gradient or solid background that's visually distinct from the
+        rest of the page (not just the page background colour)
+
+    ──────────────────────────────────────────────────────────────────
+    ANIMATION RULES (apply throughout the whole page)
+    ──────────────────────────────────────────────────────────────────
+    • All scroll-triggered elements: use a [data-animate] attribute in HTML
+      and toggle a "visible" class with IntersectionObserver in script.js
+    • ALWAYS include a prefers-reduced-motion media query that disables
+      all animations for users who have that OS setting enabled:
+        @media (prefers-reduced-motion: reduce) {
+          *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+          }
+          [data-animate] { opacity: 1; transform: none; }
+        }
+
+    ──────────────────────────────────────────────────────────────────
+    STRETCH GOALS (optional)
+    ──────────────────────────────────────────────────────────────────
+    → Add a sticky navbar that becomes solid/blurred when you scroll
+      past the hero (use JavaScript to add a class on scroll)
+    → Add a counter animation (0 → target number) that triggers when
+      a "stats" section scrolls into view
+    → Add a CSS-only accordion FAQ section using <details> and <summary>
+    → Add a "back to top" button that appears after scrolling 400px
+    -->
+
+  </body>
+</html>

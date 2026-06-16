@@ -1,0 +1,216 @@
+/*
+  PROJECT 2.8 — WEATHER APP
+  ══════════════════════════
+  Lecture Notes: 15. APIs, 10. JavaScript Intermediate
+
+  Design inspiration: modern weather apps like Apple Weather or
+  Weather.com — clean gradients, large temperature display,
+  card-based layout. Make it feel like a real product.
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 1 — RESET AND CUSTOM PROPERTIES
+  ══════════════════════════════════════════════════════════
+  Start with:
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; }
+
+  Define CSS custom properties:
+    --blue-light:  #e0f2fe
+    --blue-mid:    #38bdf8
+    --blue-dark:   #0369a1
+    --text-dark:   #0c1a2e
+    --text-light:  #ffffff
+    --card-bg:     rgba(255, 255, 255, 0.15)
+    --card-border: rgba(255, 255, 255, 0.3)
+    --radius:      16px
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 2 — BODY AND PAGE BACKGROUND
+  ══════════════════════════════════════════════════════════
+  Give the body a sky-like gradient background:
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2980b9 50%, #6dd5fa 100%);
+      color: var(--text-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+  The app should have a maximum width of about 600px and be
+  centred on the page.
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 3 — SEARCH FORM
+  ══════════════════════════════════════════════════════════
+  Style the search form as a pill-shaped bar:
+    .search-form {
+      display: flex;
+      gap: 0.5rem;
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 2rem;
+    }
+
+  The input:
+    • flex: 1 (takes all available space)
+    • padding: 0.75rem 1.25rem
+    • border-radius: 50px (fully rounded ends)
+    • border: 2px solid transparent
+    • background: rgba(255, 255, 255, 0.2)
+    • color: white (and ::placeholder in a lighter white)
+    • On :focus: border-color: white; outline: none
+
+  The search button:
+    • padding: 0.75rem 1.5rem
+    • border-radius: 50px
+    • background: white
+    • color: var(--blue-dark)
+    • font-weight: 600
+    • cursor: pointer
+    • border: none
+    • hover: background: var(--blue-light)
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 4 — STATE PANELS (empty, loading, error)
+  ══════════════════════════════════════════════════════════
+  The empty state:
+    • Text-align center, padding: 3rem
+    • A large emoji or icon (use font-size: 4rem)
+    • Muted white text
+
+  The loading state:
+    • Text-align center
+    • Build a CSS spinner:
+        .spinner {
+          width: 48px;
+          height: 48px;
+          border: 4px solid rgba(255,255,255,0.3);
+          border-top-color: white;
+          border-radius: 50%;
+          animation: spin 0.8s linear infinite;
+          margin: 0 auto 1rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+  The error state:
+    • A red/orange warning card
+    • background: rgba(239, 68, 68, 0.2)
+    • border: 1px solid rgba(239, 68, 68, 0.5)
+    • border-radius: var(--radius)
+    • padding: 1.5rem
+    • text-align: center
+
+  Hidden class (used by JavaScript to show/hide states):
+    .hidden { display: none; }
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 5 — CURRENT WEATHER CARD
+  ══════════════════════════════════════════════════════════
+  The main weather display — a frosted glass card:
+    .weather-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      width: 100%;
+      max-width: 500px;
+    }
+
+  Location header:
+    • City name: font-size: 1.75rem; font-weight: 700
+    • Country + date: font-size: 0.9rem; opacity: 0.8
+
+  Main weather section (icon + temperature side by side):
+    • display: flex; align-items: center; justify-content: space-between
+    • The temperature: font-size: 5rem; font-weight: 300; line-height: 1
+    • The weather icon from API: width: 80px; height: 80px
+    • Weather description: text-transform: capitalize; opacity: 0.85
+
+  Detail grid (the 4 stat cards):
+    • display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem
+    • margin-top: 1.5rem
+
+  Each stat card:
+    • background: rgba(255, 255, 255, 0.1)
+    • border-radius: 12px
+    • padding: 1rem
+    • The label: font-size: 0.8rem; opacity: 0.7; text-transform: uppercase
+    • The value: font-size: 1.25rem; font-weight: 600; margin-top: 0.25rem
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 6 — FORECAST GRID
+  ══════════════════════════════════════════════════════════
+  The 5-day forecast section:
+    • Heading: "5-Day Forecast" styled similarly to the card headers
+    • Grid: repeat(5, 1fr) on desktop, repeat(3, 1fr) or 2 columns on mobile
+
+  Each forecast day card (built by JavaScript, but style the class here):
+    .forecast-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1rem 0.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .forecast-card .day-name   { font-size: 0.85rem; font-weight: 600; opacity: 0.8; }
+    .forecast-card img         { width: 40px; height: 40px; }
+    .forecast-card .temp-high  { font-size: 1rem; font-weight: 700; }
+    .forecast-card .temp-low   { font-size: 0.85rem; opacity: 0.6; }
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 7 — UNITS TOGGLE
+  ══════════════════════════════════════════════════════════
+  Two small toggle buttons, styled as a pill group:
+    .unit-toggle {
+      display: flex;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50px;
+      padding: 3px;
+      margin-bottom: 1rem;
+    }
+
+    .unit-btn {
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+      border: none;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .unit-btn.active {
+      background: white;
+      color: var(--blue-dark);
+      font-weight: 600;
+    }
+
+
+  ══════════════════════════════════════════════════════════
+  STRETCH GOALS
+  ══════════════════════════════════════════════════════════
+  → Change the body gradient based on weather condition
+    (sunny, cloudy, rainy, snowy, night-time)
+    Use a class on body controlled by JavaScript
+  → Animate the weather card appearing with a fade + slide up
+  → Add a dark mode that activates at night (if time is 21:00–06:00)
+*/
+
+/* Start your styles below */

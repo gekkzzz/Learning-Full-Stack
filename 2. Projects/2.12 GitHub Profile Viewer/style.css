@@ -1,0 +1,150 @@
+/*
+  PROJECT 2.12 — GITHUB PROFILE VIEWER
+  ══════════════════════════════════════
+  Lecture Notes: 15. APIs
+
+  GitHub's own design is a good reference — dark header, card-based
+  layouts, clear hierarchy. Aim for that kind of professional feel.
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 1 — CUSTOM PROPERTIES AND RESET
+  ══════════════════════════════════════════════════════════
+  Custom properties (GitHub-inspired dark theme, or make your own):
+    --colour-bg:       #0d1117
+    --colour-surface:  #161b22
+    --colour-border:   #30363d
+    --colour-text:     #c9d1d9
+    --colour-heading:  #f0f6fc
+    --colour-muted:    #8b949e
+    --colour-accent:   #58a6ff
+    --colour-green:    #3fb950
+    --radius:          6px
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 2 — LAYOUT
+  ══════════════════════════════════════════════════════════
+  Centre the app with a max-width of about 900px:
+    body {
+      background: var(--colour-bg);
+      color: var(--colour-text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .app {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 3 — SEARCH FORM
+  ══════════════════════════════════════════════════════════
+  Style as a prominent search bar at the top:
+    • Input: full-width-ish, dark background, accent border on focus
+    • Button: accent colour, right-aligned
+    • Wrap in a card-like container with border and padding
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 4 — PROFILE LAYOUT
+  ══════════════════════════════════════════════════════════
+  On desktop, a two-column layout:
+    Left column (~280px): avatar, name, bio, stats
+    Right column: repositories grid
+
+    .profile-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+      align-items: start;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 700px) {
+      .profile-layout { grid-template-columns: 1fr; }
+    }
+
+  Avatar:
+    • width: 100%; border-radius: 50%
+    • border: 3px solid var(--colour-border)
+
+  Stat grid (2×2):
+    • display: grid; grid-template-columns: 1fr 1fr
+    • border: 1px solid var(--colour-border)
+    • border-radius: var(--radius)
+    • overflow: hidden (so corners don't stick out)
+
+  Each stat cell:
+    • padding: 0.75rem
+    • border: 1px solid var(--colour-border)
+    • text-align: center
+    • The number: font-weight: 700; color: var(--colour-heading)
+    • The label: font-size: 0.8rem; color: var(--colour-muted)
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 5 — REPO CARDS
+  ══════════════════════════════════════════════════════════
+  Each repository card (built by JS, style the class):
+    .repo-card {
+      background: var(--colour-surface);
+      border: 1px solid var(--colour-border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: border-color 0.15s;
+    }
+
+    .repo-card:hover { border-color: var(--colour-accent); }
+
+  Repo name (a link):
+    • colour: var(--colour-accent)
+    • font-weight: 600
+    • No underline (add on hover)
+
+  Description:
+    • font-size: 0.875rem
+    • color: var(--colour-muted)
+    • flex: 1 (pushes meta to the bottom)
+
+  Meta row (language + stars + forks):
+    • display: flex; gap: 1rem; align-items: center
+    • font-size: 0.8rem; color: var(--colour-muted)
+    • margin-top: auto
+
+  Language badge:
+    • A coloured dot + language name
+    • The dot colour should match the language
+      (GitHub has a predefined palette — look it up or use a generic colour)
+
+  Repos grid:
+    • display: grid
+    • grid-template-columns: repeat(auto-fill, minmax(260px, 1fr))
+    • gap: 1rem
+
+
+  ══════════════════════════════════════════════════════════
+  TASK 6 — LOADING SPINNER
+  ══════════════════════════════════════════════════════════
+  A simple CSS-only spinner:
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--colour-border);
+      border-top-color: var(--colour-accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin: 3rem auto;
+    }
+
+  Hidden utility:
+    .hidden { display: none; }
+*/
+
+/* Start your styles below */

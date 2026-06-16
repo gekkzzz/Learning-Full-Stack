@@ -6,13 +6,29 @@ This repo is designed to be used alongside free online resources — read the le
 
 ---
 
+## Who This Is For
+
+This curriculum is for anyone learning to code who wants a clear, structured path — not a scatter of random tutorials. It's especially well suited for:
+
+- **Complete beginners** — everything starts from zero, no assumed knowledge
+- **Career switchers** — covers the full stack with enough depth to be job-ready
+- **Self-taught developers** — fills in gaps left by tutorials and courses
+- **Anyone who learns by doing** — every topic has a matching project, not just reading
+
+You don't need to go through all 30 topics. Open `1. Lecture Notes/00. Learning Roadmap.md` and pick the path that fits your goal (frontend, backend, full stack, data, or DevOps). You can be focused and targeted rather than working through everything linearly.
+
+---
+
 ## How to Use This Repo
 
-1. Start at lecture note `01.` and work your way forward
-2. When you finish a topic, open the matching project folder
-3. Read the instructions inside the files (they're in the comments)
-4. Build it yourself — look things up, experiment, break stuff
-5. Commit your work as you go — treat this as your portfolio
+1. Open `1. Lecture Notes/00. Learning Roadmap.md` and choose a path
+2. Work through the lecture notes for your chosen path in order
+3. When you finish a topic, open the matching project folder
+4. Read the instructions inside the files (they're in the comments)
+5. Build it yourself — look things up, experiment, break stuff
+6. Commit your work as you go — treat this as your portfolio
+
+This repo pairs well with the [Study Sprint Tracker](https://github.com/marketplace/actions/study-sprint-tracker) GitHub Action, which automatically tracks your learning progress across commits.
 
 ---
 
@@ -38,10 +54,11 @@ Use these free resources alongside the lecture notes:
 
 ## Lecture Notes
 
-All notes are in the `1. Lecture Notes/` folder, numbered in learning order.
+All notes are in the `1. Lecture Notes/` folder, numbered in learning order. Start with `00. Learning Roadmap.md` to find the right path for your goal — you don't need to read everything linearly.
 
 | # | Topic | What you'll learn |
 | --- | ------- | ------------------- |
+| 00 | Learning Roadmap | Choose your path — frontend, backend, full stack, data, or DevOps |
 | 01 | VS Code Basics | Editor setup, shortcuts, extensions, debugging |
 | 02 | CLI and Terminal | Navigation, file operations, environment variables, SSH |
 | 03 | Git and GitHub | Version control, branching, pull requests, workflows |
@@ -68,6 +85,10 @@ All notes are in the `1. Lecture Notes/` folder, numbered in learning order.
 | 24 | Python Foundations | Variables, functions, classes, error handling, virtual environments |
 | 25 | Python Full Stack | FastAPI, Pydantic, SQLAlchemy, Alembic, JWT, Docker |
 | 26 | Web Security | SQL injection, XSS, CSRF, password hashing, environment variables, OWASP |
+| 27 | Django | Models, ORM, views, templates, forms, authentication, REST framework |
+| 28 | MongoDB | Documents, collections, CRUD, aggregation pipeline, indexes, Mongoose |
+| 29 | Pandas and NumPy | DataFrames, Series, indexing, cleaning, aggregation, vectorized ops |
+| 30 | DevOps and AWS | CI/CD, Docker, EC2, S3, RDS, IAM, load balancers, deployment pipelines |
 
 ---
 
